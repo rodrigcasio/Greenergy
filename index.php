@@ -24,6 +24,10 @@ if (isset($_SESSION['cto_logged_in'])) {
 </head>
 <body>
     <div class="container">
+        <div class="logo-header">
+            <img src="assets/logo.png" alt="Greenergy Logo" class="company-logo">
+            <div class="tagline">Powering Tomorrow</div>
+        </div>
         <div class="welcome-section">
             <h1>Greenergy</h1>
             <p>Bienvenido al sistema de evaluación ambiental de nuestra empresa. 

@@ -80,6 +80,10 @@ $answer_labels = [
 </head>
 <body>
     <div class="container">
+        <div class="logo-header">
+            <img src="../assets/logo.png" alt="Greenergy Logo" class="company-logo">
+            <div class="tagline">Powering Tomorrow</div>
+        </div>
         <header class="results-header">
             <h1>Resultados de Greenergy</h1>
             <p>Usuario: <?php echo htmlspecialchars($user_name); ?></p>

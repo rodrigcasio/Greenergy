@@ -32,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
+        <div class="logo-header">
+            <img src="../assets/logo.png" alt="Greenergy Logo" class="company-logo">
+            <div class="tagline">Powering Tomorrow</div>
+        </div>
         <div class="form-container">
             <h2>👨‍💼 Acceso CTO</h2>
             <p class="cto-info">Acceso exclusivo para el Chief Technology Officer</p>

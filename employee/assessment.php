@@ -193,6 +193,10 @@ $questions = [
 </head>
 <body>
     <div class="container">
+        <div class="logo-header">
+            <img src="../assets/logo.png" alt="Greenergy Logo" class="company-logo">
+            <div class="tagline">Powering Tomorrow</div>
+        </div>
         <header class="assessment-header">
             <h1>Greenergy</h1>
             <p>Responde las siguientes 10 preguntas sobre tus hábitos diarios y su impacto ambiental.</p>
