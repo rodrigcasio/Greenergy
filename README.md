@@ -1,75 +1,75 @@
-# Greenergy - Environmental Impact Assessment App
+# Greenergy - Aplicación de Evaluación de Impacto Ambiental
 
-Greenergy is a modern PHP web application for companies to empower employees and leadership in tracking, analyzing, and improving their environmental impact. The app features a dual user system (Employee & CTO/Admin), a 10-question environmental assessment, real-time analytics, and professional branding with your company logo.
-
----
-
-## 🌱 Main Features
-
-- **Branded Experience:** Company logo displayed on every page
-- **Dual User System:**
-  - **Employee:** Register, log in, complete a 10-question environmental assessment, and view detailed results with recommendations
-  - **CTO/Admin:** Secure login (password-protected), access to a dashboard with aggregated analytics, CO2 impact graphs, and employee results
-- **Automated Email Notifications:**
-  - Welcome email on registration
-  - Results email after completing the assessment
-- **Real-Time Analytics:**
-  - CO2 impact distribution
-  - Employee score charts
-  - Environmental impact analysis and recommendations
-- **Modern, Responsive UI:** Clean design, mobile-friendly, and easy to use
-- **Secure:** Password hashing, input validation, and session management
+Greenergy es una aplicación web moderna en PHP para empresas, diseñada para empoderar a empleados y líderes en el seguimiento, análisis y mejora de su impacto ambiental. La app cuenta con un sistema dual de usuarios (Empleado y CTO/Admin), una evaluación ambiental de 10 preguntas, analíticas en tiempo real y branding profesional con el logo de tu empresa.
 
 ---
 
-## 🚀 How It Works
+## 🌱 Funcionalidades Principales
 
-1. **Employees** register and log in to take a 10-question environmental impact assessment.
-2. **Assessment results** are stored in a MySQL database and analyzed in real time.
-3. **Employees** receive instant feedback, recommendations, and an email summary.
-4. **CTO/Admin** logs in with a secure password to view company-wide analytics, CO2 impact graphs, and detailed employee results.
-5. **Company logo** is shown on every page for a professional, branded experience.
+- **Experiencia con Branding:** Logo de la empresa en todas las páginas
+- **Sistema Dual de Usuarios:**
+  - **Empleado:** Registro, inicio de sesión, evaluación ambiental de 10 preguntas y visualización de resultados detallados con recomendaciones
+  - **CTO/Admin:** Acceso seguro (protegido por contraseña) a un dashboard con analíticas agregadas, gráficas de impacto de CO2 y resultados de empleados
+- **Notificaciones Automáticas por Email:**
+  - Email de bienvenida al registrarse
+  - Email de resultados al completar la evaluación
+- **Analíticas en Tiempo Real:**
+  - Distribución del impacto de CO2
+  - Gráficas de puntuación de empleados
+  - Análisis de impacto ambiental y recomendaciones
+- **Interfaz Moderna y Responsive:** Diseño limpio, adaptable a móviles y fácil de usar
+- **Seguridad:** Hash de contraseñas, validación de entradas y gestión de sesiones
 
 ---
 
-## 🛠️ Technologies Used
+## 🚀 ¿Cómo Funciona?
+
+1. **Los empleados** se registran e inician sesión para realizar una evaluación ambiental de 10 preguntas.
+2. **Los resultados** se almacenan en una base de datos MySQL y se analizan en tiempo real.
+3. **Los empleados** reciben retroalimentación instantánea, recomendaciones y un resumen por email.
+4. **El CTO/Admin** accede con contraseña segura para ver analíticas de toda la empresa, gráficas de CO2 y resultados detallados.
+5. **El logo de la empresa** aparece en todas las páginas para una experiencia profesional y personalizada.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
 - PHP 7.4+
 - MySQL 5.7+
-- HTML5, CSS3 (custom, responsive)
-- Chart.js (for graphs)
+- HTML5, CSS3 (personalizado, responsive)
+- Chart.js (para gráficas)
 
 ---
 
-## 📦 Project Structure (Key Files)
-- `index.php` — Welcome page, user type selection
-- `employee/` — Employee registration, login, assessment, dashboard, results
-- `cto/` — CTO login and dashboard
-- `assets/greenergyLogo.jpeg` — Company logo (displayed on all pages)
-- `css/style.css` — Modern, responsive styles
-- `includes/config.php` — Database and email configuration
+## 📦 Estructura del Proyecto (Archivos Clave)
+- `index.php` — Página de bienvenida y selección de tipo de usuario
+- `employee/` — Registro, login, evaluación, dashboard y resultados para empleados
+- `cto/` — Login y dashboard para CTO
+- `assets/greenergyLogo.jpeg` — Logo de la empresa (en todas las páginas)
+- `css/style.css` — Estilos modernos y responsive
+- `includes/config.php` — Configuración de base de datos y email
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Inicio Rápido
 
-1. **Clone the repo and set up your database** (see instructions below)
-2. **Add your logo:** Place your logo as `assets/greenergyLogo.jpeg`
-3. **Start MySQL and the PHP server:**
+1. **Clona el repositorio y configura tu base de datos** (ver instrucciones abajo)
+2. **Agrega tu logo:** Coloca tu logo como `assets/greenergyLogo.jpeg`
+3. **Inicia MySQL y el servidor PHP:**
    ```bash
    php -S localhost:8000
    ```
-4. **Visit** `http://localhost:8000` in your browser
-5. **CTO login password:** `GreenergyCTO2024!`
+4. **Visita** `http://localhost:8000` en tu navegador
+5. **Contraseña de CTO:** `GreenergyCTO2024!`
 
 ---
 
-## 🔥 Recent Improvements
-- Company logo integration on all pages (with rounded corners)
-- Email notifications for registration and assessment completion
-- Improved error handling and empty state UX
-- SQL compatibility fixes for MySQL strict mode
-- Enhanced dashboard analytics and graphs
-- Clean, professional UI/UX
+## 🔥 Mejoras Recientes
+- Integración del logo en todas las páginas (con bordes redondeados)
+- Notificaciones por email en registro y finalización de evaluación
+- Mejor manejo de errores y estados vacíos
+- Compatibilidad SQL con modo estricto de MySQL
+- Analíticas y gráficas mejoradas en el dashboard
+- Interfaz profesional y limpia
 
 ---
 
@@ -246,10 +246,4 @@ Modifica el array `$scores` en `assessment.php` para ajustar los puntos.
 Edita las condiciones en `results.php` para modificar los rangos de categorías.
 
 ### Cambiar Estilos
-Modifica `css/style.css` para personalizar la apariencia.
-
-### Autores
--- Equipo blanco - Hackaton 2025 - 
-
-Rodrigo Casio ([View my Github profile](https://github.com/rodrigcasio))
--- Disponible en repositorio Greenergy 
+Modifica `css/style.css` para personalizar la apariencia. 
