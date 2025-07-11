@@ -1,8 +1,8 @@
 <?php
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_USER', 'greenergy_user');
-define('DB_PASS', '');
+define('DB_USER', 'root');
+define('DB_PASS', 'Patineta7');
 define('DB_NAME', 'greenergy');
 
 // Create database connection

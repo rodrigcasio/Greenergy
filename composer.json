@@ -1,0 +1,13 @@
+{
+    "name": "greenergy/environmental-assessment",
+    "description": "Environmental assessment application for employees",
+    "type": "project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Greenergy\\": "src/"
+        }
+    }
+} 
