@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <div class="form-footer">
                 <p>¿No tienes una cuenta? <a href="register.php">Registrarse</a></p>
-                <p><a href="index.php">Volver al inicio</a></p>
+                <p><a href="../index.php">Volver al inicio</a></p>
             </div>
         </div>
     </div>

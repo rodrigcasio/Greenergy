@@ -23,6 +23,24 @@ try {
     $error = 'Error al verificar el estado de la evaluación: ' . $e->getMessage();
 }
 
+// Add this function after require_once
+function calculateIndividualCO2($answers) {
+    // Example mapping: adjust as needed for your scoring
+    $points = [
+        'a' => 5,
+        'b' => 4,
+        'c' => 3,
+        'd' => 2,
+        'e' => 1,
+        'f' => 0
+    ];
+    $total = 0;
+    foreach ($answers as $answer) {
+        $total += isset($points[$answer]) ? $points[$answer] : 0;
+    }
+    return $total;
+}
+
 // Process form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $answers = [];

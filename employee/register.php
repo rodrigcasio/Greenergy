@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <div class="form-footer">
                 <p>¿Ya tienes una cuenta? <a href="login.php">Iniciar sesión</a></p>
-                <p><a href="index.php">Volver al inicio</a></p>
+                <p><a href="../index.php">Volver al inicio</a></p>
             </div>
         </div>
     </div>
