@@ -10,21 +10,30 @@ if (!isset($_SESSION['cto_logged_in'])) {
 
 $cto_name = $_SESSION['cto_name'];
 
+// Initialize default values
+$total_employees = 0;
+$completed_assessments = 0;
+$avg_score = 0;
+$total_co2_impact = 0;
+$co2_distribution = [];
+$all_results = [];
+
 // Get statistics and data for graphs
 try {
     $pdo = getDBConnection();
     
     // Total employees
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM users");
-    $total_employees = $stmt->fetch()['total'];
+    $total_employees = $stmt->fetch()['total'] ?? 0;
     
     // Completed assessments
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM assessment_results");
-    $completed_assessments = $stmt->fetch()['total'];
+    $completed_assessments = $stmt->fetch()['total'] ?? 0;
     
     // Average score
     $stmt = $pdo->query("SELECT AVG(total_score) as avg_score FROM assessment_results");
-    $avg_score = round($stmt->fetch()['avg_score'], 1);
+    $avg_score_result = $stmt->fetch();
+    $avg_score = $avg_score_result['avg_score'] ? round($avg_score_result['avg_score'], 1) : 0;
     
     // CO2 impact calculation (based on scores)
     $stmt = $pdo->query("SELECT 
@@ -37,7 +46,13 @@ try {
         COUNT(*) as count
         FROM assessment_results 
         GROUP BY co2_category
-        ORDER BY total_score DESC");
+        ORDER BY 
+            CASE co2_category
+                WHEN 'Bajo (0-2 ton CO2/año)' THEN 1
+                WHEN 'Moderado (2-5 ton CO2/año)' THEN 2
+                WHEN 'Alto (5-8 ton CO2/año)' THEN 3
+                WHEN 'Muy Alto (8+ ton CO2/año)' THEN 4
+            END");
     $co2_distribution = $stmt->fetchAll();
     
     // Get all employee results for detailed analysis
@@ -116,6 +131,7 @@ try {
             </div>
         </div>
         
+        <?php if (!empty($all_results)): ?>
         <div class="graphs-section">
             <div class="graph-container">
                 <h3>Distribución de Impacto CO2</h3>
@@ -146,32 +162,6 @@ try {
                 <div class="analysis-card">
                     <h4>♻️ Reciclaje</h4>
                     <p>Prácticas de reciclaje: <?php echo calculateRecyclingImpact($all_results); ?>% reciclan menos del 50%</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="recommendations-section">
-            <h3>🎯 Recomendaciones para Reducir Impacto CO2</h3>
-            <div class="recommendations-grid">
-                <div class="recommendation-card">
-                    <h4>1. Transporte Sostenible</h4>
-                    <p>Implementar programa de carpooling y subsidios para transporte público.</p>
-                    <span class="impact-reduction">Reducción estimada: 2.5 ton CO2/año</span>
-                </div>
-                <div class="recommendation-card">
-                    <h4>2. Eficiencia Energética</h4>
-                    <p>Cambiar a iluminación LED y electrodomésticos eficientes en oficinas.</p>
-                    <span class="impact-reduction">Reducción estimada: 1.8 ton CO2/año</span>
-                </div>
-                <div class="recommendation-card">
-                    <h4>3. Alimentación Sostenible</h4>
-                    <p>Ofrecer opciones vegetarianas en cafetería y promover días sin carne.</p>
-                    <span class="impact-reduction">Reducción estimada: 1.2 ton CO2/año</span>
-                </div>
-                <div class="recommendation-card">
-                    <h4>4. Programa de Reciclaje</h4>
-                    <p>Implementar sistema de reciclaje integral y compostaje.</p>
-                    <span class="impact-reduction">Reducción estimada: 0.8 ton CO2/año</span>
                 </div>
             </div>
         </div>
@@ -207,58 +197,94 @@ try {
                 </table>
             </div>
         </div>
-    </div>
-    
-    <script>
-        // CO2 Distribution Chart
-        const co2Ctx = document.getElementById('co2Chart').getContext('2d');
-        new Chart(co2Ctx, {
-            type: 'doughnut',
-            data: {
-                labels: <?php echo json_encode(array_column($co2_distribution, 'co2_category')); ?>,
-                datasets: [{
-                    data: <?php echo json_encode(array_column($co2_distribution, 'count')); ?>,
-                    backgroundColor: ['#48bb78', '#4299e1', '#ed8936', '#e53e3e']
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
         
-        // Employee Scores Chart
-        const scoresCtx = document.getElementById('scoresChart').getContext('2d');
-        new Chart(scoresCtx, {
-            type: 'bar',
-            data: {
-                labels: <?php echo json_encode(array_column($all_results, 'name')); ?>,
-                datasets: [{
-                    label: 'Puntuación',
-                    data: <?php echo json_encode(array_column($all_results, 'total_score')); ?>,
-                    backgroundColor: '#667eea'
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 50
+        <script>
+            // CO2 Distribution Chart
+            const co2Ctx = document.getElementById('co2Chart').getContext('2d');
+            new Chart(co2Ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: <?php echo json_encode(array_column($co2_distribution, 'co2_category')); ?>,
+                    datasets: [{
+                        data: <?php echo json_encode(array_column($co2_distribution, 'count')); ?>,
+                        backgroundColor: ['#48bb78', '#4299e1', '#ed8936', '#e53e3e']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
                     }
                 }
-            }
-        });
-    </script>
+            });
+            
+            // Employee Scores Chart
+            const scoresCtx = document.getElementById('scoresChart').getContext('2d');
+            new Chart(scoresCtx, {
+                type: 'bar',
+                data: {
+                    labels: <?php echo json_encode(array_column($all_results, 'name')); ?>,
+                    datasets: [{
+                        label: 'Puntuación',
+                        data: <?php echo json_encode(array_column($all_results, 'total_score')); ?>,
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 50
+                        }
+                    }
+                }
+            });
+        </script>
+        <?php else: ?>
+        <div class="no-data-section">
+            <div class="no-data-card">
+                <h3>📊 No hay datos disponibles</h3>
+                <p>Actualmente no hay empleados registrados o evaluaciones completadas.</p>
+                <p>Los gráficos y análisis aparecerán automáticamente cuando los empleados completen sus evaluaciones ambientales.</p>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <div class="recommendations-section">
+            <h3>🎯 Recomendaciones para Reducir Impacto CO2</h3>
+            <div class="recommendations-grid">
+                <div class="recommendation-card">
+                    <h4>1. Transporte Sostenible</h4>
+                    <p>Implementar programa de carpooling y subsidios para transporte público.</p>
+                    <span class="impact-reduction">Reducción estimada: 2.5 ton CO2/año</span>
+                </div>
+                <div class="recommendation-card">
+                    <h4>2. Eficiencia Energética</h4>
+                    <p>Cambiar a iluminación LED y electrodomésticos eficientes en oficinas.</p>
+                    <span class="impact-reduction">Reducción estimada: 1.8 ton CO2/año</span>
+                </div>
+                <div class="recommendation-card">
+                    <h4>3. Alimentación Sostenible</h4>
+                    <p>Ofrecer opciones vegetarianas en cafetería y promover días sin carne.</p>
+                    <span class="impact-reduction">Reducción estimada: 1.2 ton CO2/año</span>
+                </div>
+                <div class="recommendation-card">
+                    <h4>4. Programa de Reciclaje</h4>
+                    <p>Implementar sistema de reciclaje integral y compostaje.</p>
+                    <span class="impact-reduction">Reducción estimada: 0.8 ton CO2/año</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
 <?php
 function calculateTransportImpact($results) {
+    if (empty($results)) return 0;
     $high_impact = 0;
     foreach ($results as $result) {
         if (in_array($result['q1_answer'], ['d', 'e', 'f'])) {
@@ -269,6 +295,7 @@ function calculateTransportImpact($results) {
 }
 
 function calculateEnergyImpact($results) {
+    if (empty($results)) return 0;
     $high_impact = 0;
     foreach ($results as $result) {
         if (in_array($result['q5_answer'], ['c', 'd'])) {
@@ -279,6 +306,7 @@ function calculateEnergyImpact($results) {
 }
 
 function calculateFoodImpact($results) {
+    if (empty($results)) return 0;
     $high_impact = 0;
     foreach ($results as $result) {
         if (in_array($result['q4_answer'], ['d', 'e'])) {
@@ -289,6 +317,7 @@ function calculateFoodImpact($results) {
 }
 
 function calculateRecyclingImpact($results) {
+    if (empty($results)) return 0;
     $low_recycling = 0;
     foreach ($results as $result) {
         if (in_array($result['q7_answer'], ['c', 'd'])) {
