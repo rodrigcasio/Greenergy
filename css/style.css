@@ -743,8 +743,8 @@ body {
 } 
 
 .company-logo {
-    height: 80px;
-    width: 80px;
+    height: 140px;
+    width: 140px;
     object-fit: cover;
     border-radius: 20px;
     margin-bottom: 10px;
