@@ -82,7 +82,6 @@ $answer_labels = [
     <div class="container">
         <div class="logo-header">
             <img src="../assets/greenergyLogo.jpeg" alt="Greenergy Logo" class="company-logo">
-            <div class="tagline">Powering Tomorrow</div>
         </div>
         <header class="results-header">
             <h1>Resultados de Greenergy</h1>

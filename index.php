@@ -26,7 +26,6 @@ if (isset($_SESSION['cto_logged_in'])) {
     <div class="container">
         <div class="logo-header">
             <img src="assets/greenergyLogo.jpeg" alt="Greenergy Logo" class="company-logo">
-            <div class="tagline">Powering Tomorrow</div>
         </div>
         <div class="welcome-section">
             <h1>Greenergy</h1>

@@ -33,7 +33,6 @@ try {
     <div class="container">
         <div class="logo-header">
             <img src="../assets/greenergyLogo.jpeg" alt="Greenergy Logo" class="company-logo">
-            <div class="tagline">Powering Tomorrow</div>
         </div>
         <header class="dashboard-header">
             <h1>Bienvenido, <?php echo htmlspecialchars($user_name); ?></h1>
