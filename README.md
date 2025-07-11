@@ -252,3 +252,4 @@ Modifica `css/style.css` para personalizar la apariencia.
 -- Equipo blanco - Hackaton 2025 - 
 
 Rodrigo Casio ([View my Github profile](https://github.com/rodrigcasio))
+-- Disponible en repositorio Greenergy 
