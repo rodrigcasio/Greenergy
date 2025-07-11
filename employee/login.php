@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="container">
         <div class="logo-header">
-            <img src="../assets/logo.png" alt="Greenergy Logo" class="company-logo">
+            <img src="../assets/greenergyLogo.jpeg" alt="Greenergy Logo" class="company-logo">
             <div class="tagline">Powering Tomorrow</div>
         </div>
         <div class="form-container">
