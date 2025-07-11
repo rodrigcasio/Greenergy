@@ -1,9 +1,9 @@
 <?php
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'greenergy');
-define('DB_USER', 'root');
-define('DB_PASS', 'Patineta7');
+define('DB_NAME', 'greenergy_db');
+define('DB_USER', 'greenergy_user');
+define('DB_PASS', 'kumon7700rcg777');
 
 // Email configuration
 define('COMPANY_NAME', 'Greenergy');
