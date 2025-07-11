@@ -1,8 +1,98 @@
-# Greenergy - Aplicación PHP
+# Greenergy - Aplicación de Evaluación de Impacto Ambiental
 
-Una aplicación web completa para evaluar el impacto ambiental de los empleados de una empresa mediante un cuestionario de 10 preguntas.
+Greenergy es una aplicación web moderna en PHP para empresas, diseñada para empoderar tanto a empleados como a líderes en el seguimiento, análisis y mejora de su impacto ambiental. La app cuenta con un sistema dual de usuarios (Empleado y CTO/Admin), una evaluación ambiental de 10 preguntas, analíticas en tiempo real y branding profesional con el logo de tu empresa.
 
-## Características
+---
+
+## 🌱 Funcionalidades Principales
+
+- **Experiencia con Branding:** Logo de la empresa visible en todas las páginas
+- **Sistema Dual de Usuarios:**
+  - **Empleado:** Registro, inicio de sesión, evaluación ambiental de 10 preguntas y resultados detallados con recomendaciones
+  - **CTO/Admin:** Acceso seguro (protegido por contraseña) a un panel con analíticas agregadas, gráficos de impacto de CO2 y resultados de empleados
+- **Notificaciones Automáticas por Email:**
+  - Email de bienvenida al registrarse
+  - Email de resultados tras completar la evaluación
+- **Analíticas en Tiempo Real:**
+  - Distribución del impacto de CO2
+  - Gráficos de puntuaciones de empleados
+  - Análisis de impacto ambiental y recomendaciones
+- **Interfaz Moderna y Responsive:** Diseño limpio, adaptable a dispositivos móviles y fácil de usar
+- **Seguridad:** Hash de contraseñas, validación de entradas y gestión de sesiones
+
+---
+
+## 🚀 ¿Cómo Funciona?
+
+1. **Los empleados** se registran e inician sesión para realizar una evaluación ambiental de 10 preguntas.
+2. **Los resultados** se almacenan en una base de datos MySQL y se analizan en tiempo real.
+3. **Los empleados** reciben feedback instantáneo, recomendaciones y un resumen por email.
+4. **El CTO/Admin** accede con contraseña segura a un panel con analíticas, gráficos de CO2 y resultados detallados.
+5. **El logo de la empresa** se muestra en todas las páginas para una experiencia profesional y coherente.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+- PHP 7.4+
+- MySQL 5.7+
+- HTML5, CSS3 (personalizado y responsive)
+- Chart.js (para gráficos)
+
+---
+
+## 📦 Estructura del Proyecto (Archivos Clave)
+- `index.php` — Página de bienvenida y selección de tipo de usuario
+- `employee/` — Registro, login, evaluación, dashboard y resultados para empleados
+- `cto/` — Login y dashboard para CTO
+- `assets/greenergyLogo.jpeg` — Logo de la empresa (visible en todas las páginas)
+- `css/style.css` — Estilos modernos y responsive
+- `includes/config.php` — Configuración de base de datos y email
+
+---
+
+## ⚡ Inicio Rápido
+
+1. **Clona el repositorio y configura la base de datos** (ver instrucciones más abajo)
+2. **Agrega tu logo:** Coloca tu logo como `assets/greenergyLogo.jpeg`
+3. **Inicia MySQL y el servidor PHP:**
+   ```bash
+   php -S localhost:8000
+   ```
+4. **Abre** `http://localhost:8000` en tu navegador
+5. **Contraseña de CTO:** `GreenergyCTO2024!`
+
+---
+
+## 🔥 Mejoras Recientes
+- Integración del logo en todas las páginas (con esquinas redondeadas)
+- Notificaciones por email en registro y al completar la evaluación
+- Mejor manejo de errores y mensajes cuando no hay datos
+- Compatibilidad SQL con modo estricto de MySQL
+- Analíticas y gráficos mejorados en el dashboard
+- Interfaz profesional y limpia
+
+---
+
+## Resumen del Proyecto (para presentación)
+
+**Objetivo:**  
+Desarrollar una plataforma web profesional y personalizada para que las empresas evalúen y mejoren el impacto ambiental de sus empleados, con analíticas para la dirección.
+
+**Logros Clave:**
+- Branding completo con logo en todas las páginas
+- Sistema dual de usuarios (Empleado y CTO/Admin)
+- Evaluación ambiental automatizada y recomendaciones personalizadas
+- Panel de analíticas en tiempo real para el CTO
+- Notificaciones automáticas por email
+- Seguridad y experiencia de usuario mejoradas
+- Documentación y README actualizados
+
+**Resultado:**  
+Una plataforma robusta, fácil de usar y visualmente atractiva para la evaluación ambiental, con analíticas accionables para la dirección y una experiencia fluida para los empleados.
+
+---
+
+## Características Técnicas y Detalles
 
 ### Para Empleados
 - **Registro de usuarios** con nombre, email y contraseña
@@ -12,7 +102,7 @@ Una aplicación web completa para evaluar el impacto ambiental de los empleados 
 - **Resultados detallados** con categorización y recomendaciones
 - **Interfaz responsive** y moderna
 
-### Para Administradores
+### Para CTO/Admin
 - **Panel administrativo** con estadísticas completas
 - **Vista de todos los resultados** de empleados
 - **Distribución de puntuaciones** por categorías
@@ -104,29 +194,32 @@ location / {
 ### 4. Acceso a la Aplicación
 
 1. **Acceso principal**: `http://tu-dominio.com/`
-2. **Panel administrativo**: `http://tu-dominio.com/admin/`
-   - Contraseña por defecto: `admin123`
-   - **IMPORTANTE**: Cambia esta contraseña en producción
+2. **Panel CTO**: `http://tu-dominio.com/cto/`
+   - Contraseña por defecto: `GreenergyCTO2024!`
+   - **IMPORTANTE**: Cambia esta contraseña en producción si lo deseas
 
 ## Estructura de Archivos
 
 ```
 Greenergy/
 ├── index.php                 # Página principal
-├── register.php             # Registro de usuarios
-├── login.php               # Login de usuarios
-├── dashboard.php           # Dashboard del usuario
-├── assessment.php          # Formulario de evaluación
-├── results.php             # Resultados de la evaluación
-├── logout.php              # Cerrar sesión
-├── includes/
-│   └── config.php          # Configuración de base de datos
+├── employee/                 # Módulo de empleados
+│   ├── welcome.php           # Bienvenida empleados
+│   ├── login.php             # Login empleados
+│   ├── register.php          # Registro empleados
+│   ├── dashboard.php         # Dashboard empleados
+│   ├── assessment.php        # Evaluación ambiental
+│   └── results.php           # Resultados de la evaluación
+├── cto/                      # Módulo CTO/Admin
+│   ├── login.php             # Login CTO
+│   └── dashboard.php         # Dashboard CTO
+├── assets/
+│   └── greenergyLogo.jpeg    # Logo de la empresa
 ├── css/
-│   └── style.css           # Estilos CSS
-├── admin/
-│   ├── index.php           # Panel administrativo
-│   └── logout.php          # Logout de administrador
-└── README.md               # Este archivo
+│   └── style.css             # Estilos CSS
+├── includes/
+│   └── config.php            # Configuración
+└── README.md                 # Este archivo
 ```
 
 ## Base de Datos
