@@ -3,7 +3,7 @@
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'greenergy');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'Patineta7');
 
 // Email configuration
 define('COMPANY_NAME', 'Greenergy');
