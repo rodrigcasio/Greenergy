@@ -61,6 +61,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $total_score
             ]);
             
+            // Get user info for email
+            $stmt = $pdo->prepare("SELECT name, email FROM users WHERE id = ?");
+            $stmt->execute([$user_id]);
+            $user = $stmt->fetch();
+            
+            // Calculate CO2 impact
+            $co2_impact = calculateIndividualCO2($total_score);
+            
+            // Send completion email
+            if ($user) {
+                sendAssessmentCompletionEmail($user['name'], $user['email'], $total_score, $co2_impact);
+            }
+            
             header('Location: results.php');
             exit();
         } catch(PDOException $e) {

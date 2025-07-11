@@ -36,7 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
                 $stmt->execute([$name, $email, $hashed_password]);
                 
+                // Send welcome email
+                $email_sent = sendWelcomeEmail($name, $email);
+                
                 $success = 'Registro exitoso. Ahora puedes iniciar sesión.';
+                if ($email_sent) {
+                    $success .= ' Se ha enviado un email de bienvenida a tu correo.';
+                }
             }
         } catch(PDOException $e) {
             $error = 'Error en el registro: ' . $e->getMessage();
