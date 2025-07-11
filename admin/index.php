@@ -2,8 +2,9 @@
 session_start();
 require_once '../includes/config.php';
 
-// Simple admin authentication (in production, use proper authentication)
-$admin_password = 'admin123'; // Change this in production
+// --- AUTENTICACIÓN SIMPLE DE ADMINISTRADOR ---
+// (En producción, usa un sistema más seguro)
+$admin_password = 'admin123'; // Cambia esta contraseña en producción
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['password'] === $admin_password) {
@@ -13,8 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+// Si el admin no ha iniciado sesión, muestra el formulario de acceso
 if (!isset($_SESSION['admin_logged_in'])) {
     ?>
+    <!-- Formulario de acceso para el administrador -->
     <!DOCTYPE html>
     <html lang="es">
     <head>
@@ -52,23 +55,23 @@ if (!isset($_SESSION['admin_logged_in'])) {
     exit();
 }
 
-// Get statistics
+// --- CONSULTAS DE ESTADÍSTICAS PARA EL PANEL ---
 try {
     $pdo = getDBConnection();
     
-    // Total users
+    // Total de usuarios registrados
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM users");
     $total_users = $stmt->fetch()['total'];
     
-    // Completed assessments
+    // Total de evaluaciones completadas
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM assessment_results");
     $completed_assessments = $stmt->fetch()['total'];
     
-    // Average score
+    // Promedio de puntuación de todas las evaluaciones
     $stmt = $pdo->query("SELECT AVG(total_score) as avg_score FROM assessment_results");
     $avg_score = round($stmt->fetch()['avg_score'], 1);
     
-    // Score distribution
+    // Distribución de puntuaciones por categoría
     $stmt = $pdo->query("SELECT 
         CASE 
             WHEN total_score >= 40 THEN 'Excelente (40-50)'
@@ -82,7 +85,7 @@ try {
         ORDER BY total_score DESC");
     $score_distribution = $stmt->fetchAll();
     
-    // All results with user info
+    // Resultados detallados de todos los usuarios
     $stmt = $pdo->query("SELECT 
         u.name, 
         u.email, 

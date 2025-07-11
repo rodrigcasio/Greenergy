@@ -1,8 +1,8 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para el usuario
 require_once '../includes/config.php';
 
-// Redirect if user is already logged in
+// --- REDIRECCIONAR SI EL USUARIO YA INICIÓ SESIÓN ---
 if (isset($_SESSION['user_id'])) {
     header('Location: dashboard.php');
     exit();
@@ -27,6 +27,7 @@ if (isset($_SESSION['user_id'])) {
                Registra tu información y completa la evaluación ambiental.</p>
             
             <div class="action-buttons">
+                <!-- Botones para iniciar sesión o registrarse -->
                 <a href="login.php" class="btn btn-primary">Iniciar Sesión</a>
                 <a href="register.php" class="btn btn-secondary">Registrarse</a>
             </div>

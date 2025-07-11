@@ -3,7 +3,7 @@
 session_start();
 require_once '../includes/config.php';
 
-// Check if CTO is logged in
+// --- VERIFICAR SI EL CTO ESTÁ LOGUEADO ---
 if (!isset($_SESSION['cto_logged_in'])) {
     header('Location: login.php');
     exit();
@@ -11,7 +11,7 @@ if (!isset($_SESSION['cto_logged_in'])) {
 
 $cto_name = $_SESSION['cto_name'];
 
-// Initialize default values
+// Inicializar valores por defecto para las estadísticas
 $total_employees = 0;
 $completed_assessments = 0;
 $avg_score = 0;
@@ -19,24 +19,24 @@ $total_co2_impact = 0;
 $co2_distribution = [];
 $all_results = [];
 
-// Get statistics and data for graphs
+// --- CONSULTAR ESTADÍSTICAS Y DATOS PARA GRÁFICAS ---
 try {
     $pdo = getDBConnection();
     
-    // Total employees
+    // Total de empleados registrados
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM users");
     $total_employees = $stmt->fetch()['total'] ?? 0;
     
-    // Completed assessments
+    // Total de evaluaciones completadas
     $stmt = $pdo->query("SELECT COUNT(*) as total FROM assessment_results");
     $completed_assessments = $stmt->fetch()['total'] ?? 0;
     
-    // Average score
+    // Promedio de puntuación de todas las evaluaciones
     $stmt = $pdo->query("SELECT AVG(total_score) as avg_score FROM assessment_results");
     $avg_score_result = $stmt->fetch();
     $avg_score = $avg_score_result['avg_score'] ? round($avg_score_result['avg_score'], 1) : 0;
     
-    // CO2 impact calculation (based on scores)
+    // Distribución del impacto de CO2 por categorías
     $stmt = $pdo->query("SELECT 
         CASE 
             WHEN total_score >= 40 THEN 'Bajo (0-2 ton CO2/año)'
@@ -56,7 +56,7 @@ try {
             END");
     $co2_distribution = $stmt->fetchAll();
     
-    // Get all employee results for detailed analysis
+    // Obtener todos los resultados de empleados para análisis detallado
     $stmt = $pdo->query("SELECT 
         u.name, 
         u.email, 
@@ -69,17 +69,17 @@ try {
         ORDER BY ar.completed_at DESC");
     $all_results = $stmt->fetchAll();
     
-    // Calculate total CO2 impact
+    // --- CALCULAR EL IMPACTO TOTAL DE CO2 ---
     $total_co2_impact = 0;
     foreach ($all_results as $result) {
         if ($result['total_score'] >= 40) {
-            $total_co2_impact += 1; // Low impact
+            $total_co2_impact += 1; // Bajo impacto
         } elseif ($result['total_score'] >= 30) {
-            $total_co2_impact += 3.5; // Moderate impact
+            $total_co2_impact += 3.5; // Impacto moderado
         } elseif ($result['total_score'] >= 20) {
-            $total_co2_impact += 6.5; // High impact
+            $total_co2_impact += 6.5; // Impacto alto
         } else {
-            $total_co2_impact += 10; // Very high impact
+            $total_co2_impact += 10; // Impacto muy alto
         }
     }
     

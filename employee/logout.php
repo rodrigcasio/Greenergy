@@ -1,10 +1,10 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para poder manipularla
 
-// Destroy all session data
-session_destroy();
+// --- DESTRUCCIÓN DE TODA LA SESIÓN DEL USUARIO ---
+session_destroy(); // Elimina todos los datos de sesión del usuario
 
-// Redirect to home page
+// Redirige al usuario a la página principal después de cerrar sesión
 header('Location: ../index.php');
 exit();
 ?> 

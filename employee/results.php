@@ -1,8 +1,8 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para el usuario
 require_once '../includes/config.php';
 
-// Check if user is logged in
+// --- VERIFICAR SI EL USUARIO ESTÁ LOGUEADO ---
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
-// Get user's assessment results
+// --- OBTENER LOS RESULTADOS DE LA EVALUACIÓN DEL USUARIO ---
 try {
     $pdo = getDBConnection();
     $stmt = $pdo->prepare("SELECT * FROM assessment_results WHERE user_id = ?");
@@ -26,8 +26,8 @@ try {
     $error = 'Error al cargar los resultados: ' . $e->getMessage();
 }
 
-// Calculate score percentage and category
-$max_score = 50; // Maximum possible score (10 questions * 5 points each)
+// --- CALCULAR CATEGORÍA Y MENSAJE SEGÚN EL PUNTAJE ---
+$max_score = 50; // Máximo puntaje posible (10 preguntas * 5 puntos)
 $score_percentage = ($assessment['total_score'] / $max_score) * 100;
 
 if ($score_percentage >= 80) {

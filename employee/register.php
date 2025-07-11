@@ -1,17 +1,18 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para el usuario
 require_once '../includes/config.php';
 
 $error = '';
 $success = '';
 
+// --- PROCESAR EL FORMULARIO DE REGISTRO ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     
-    // Validation
+    // --- VALIDACIÓN DE CAMPOS DEL FORMULARIO ---
     if (empty($name) || empty($email) || empty($password)) {
         $error = 'Todos los campos son obligatorios.';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -24,19 +25,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         try {
             $pdo = getDBConnection();
             
-            // Check if email already exists
+            // Verificar si el email ya está registrado
             $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->execute([$email]);
             
             if ($stmt->rowCount() > 0) {
                 $error = 'Este email ya está registrado.';
             } else {
-                // Hash password and insert user
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                // --- HASHEAR LA CONTRASEÑA Y GUARDAR EL USUARIO ---
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Cifra la contraseña de forma segura
                 $stmt = $pdo->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
                 $stmt->execute([$name, $email, $hashed_password]);
                 
-                // Send welcome email
+                // Enviar email de bienvenida
                 $email_sent = sendWelcomeEmail($name, $email);
                 
                 $success = 'Registro exitoso. Ahora puedes iniciar sesión.';

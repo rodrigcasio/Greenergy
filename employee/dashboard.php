@@ -2,7 +2,7 @@
 session_start();
 require_once '../includes/config.php';
 
-// Check if user is logged in
+// --- VERIFICAR SI EL USUARIO ESTÁ LOGUEADO ---
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION['user_name'];
 
-// Check if user has already completed the assessment
+// --- CONSULTAR SI EL USUARIO YA COMPLETÓ LA EVALUACIÓN ---
 try {
     $pdo = getDBConnection();
     $stmt = $pdo->prepare("SELECT * FROM assessment_results WHERE user_id = ?");
@@ -46,6 +46,7 @@ try {
             
             <div class="assessment-status">
                 <?php if ($assessment): ?>
+                    <!-- Si el usuario ya completó la evaluación, muestra el resumen y acceso a resultados -->
                     <div class="completed-assessment">
                         <h3>✅ Evaluación Completada</h3>
                         <p>Has completado la evaluación ambiental el <?php echo date('d/m/Y H:i', strtotime($assessment['completed_at'])); ?></p>
@@ -53,6 +54,7 @@ try {
                         <a href="results.php" class="btn btn-primary">Ver Resultados Detallados</a>
                     </div>
                 <?php else: ?>
+                    <!-- Si el usuario no ha completado la evaluación, invita a realizarla -->
                     <div class="pending-assessment">
                         <h3>📋 Evaluación Pendiente</h3>
                         <p>La evaluación ambiental consta de 10 preguntas sobre tus hábitos diarios y su impacto ambiental.</p>

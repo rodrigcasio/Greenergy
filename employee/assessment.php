@@ -2,7 +2,7 @@
 session_start();
 require_once '../includes/config.php';
 
-// Check if user is logged in
+// --- VERIFICAR SI EL USUARIO ESTÁ LOGUEADO ---
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Check if user has already completed the assessment
+// --- VERIFICAR SI EL USUARIO YA COMPLETÓ LA EVALUACIÓN ---
 try {
     $pdo = getDBConnection();
     $stmt = $pdo->prepare("SELECT id FROM assessment_results WHERE user_id = ?");
@@ -23,9 +23,9 @@ try {
     $error = 'Error al verificar el estado de la evaluación: ' . $e->getMessage();
 }
 
-// Add this function after require_once
+// --- FUNCIÓN PARA CALCULAR EL IMPACTO INDIVIDUAL DE CO2 ---
 function calculateIndividualCO2($answers) {
-    // Example mapping: adjust as needed for your scoring
+    // Mapeo de puntajes por respuesta
     $points = [
         'a' => 5,
         'b' => 4,
@@ -41,12 +41,12 @@ function calculateIndividualCO2($answers) {
     return $total;
 }
 
-// Process form submission
+// --- PROCESAR EL ENVÍO DEL FORMULARIO DE EVALUACIÓN ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $answers = [];
     $total_score = 0;
     
-    // Scoring system: a=5, b=4, c=3, d=2, e=1, f=0 (environmentally friendly to less friendly)
+    // Sistema de puntaje: a=5, b=4, c=3, d=2, e=1, f=0
     $scores = [
         'a' => 5, 'b' => 4, 'c' => 3, 'd' => 2, 'e' => 1, 'f' => 0
     ];
@@ -63,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (!isset($error)) {
         try {
+            // --- GUARDAR RESULTADOS EN LA BASE DE DATOS ---
             $stmt = $pdo->prepare("INSERT INTO assessment_results (user_id, q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer, q8_answer, q9_answer, q10_answer, total_score) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([
                 $user_id,
@@ -79,15 +80,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $total_score
             ]);
             
-            // Get user info for email
+            // Obtener información del usuario para el email
             $stmt = $pdo->prepare("SELECT name, email FROM users WHERE id = ?");
             $stmt->execute([$user_id]);
             $user = $stmt->fetch();
             
-            // Calculate CO2 impact
+            // Calcular el impacto de CO2
             $co2_impact = calculateIndividualCO2($total_score);
             
-            // Send completion email
+            // Enviar email de finalización
             if ($user) {
                 sendAssessmentCompletionEmail($user['name'], $user['email'], $total_score, $co2_impact);
             }

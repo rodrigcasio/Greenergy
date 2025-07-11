@@ -1,9 +1,10 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para el usuario
 require_once '../includes/config.php';
 
 $error = '';
 
+// --- PROCESAR EL FORMULARIO DE INICIO DE SESIÓN ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
@@ -17,12 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->execute([$email]);
             $user = $stmt->fetch();
             
+            // --- VERIFICAR USUARIO Y CONTRASEÑA ---
             if ($user && password_verify($password, $user['password'])) {
+                // Si las credenciales son correctas, guardar datos en la sesión
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['user_email'] = $user['email'];
                 
-                header('Location: dashboard.php');
+                header('Location: dashboard.php'); // Redirige al dashboard del empleado
                 exit();
             } else {
                 $error = 'Email o contraseña incorrectos.';

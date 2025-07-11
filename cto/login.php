@@ -1,10 +1,11 @@
 <?php
-session_start();
+session_start(); // Inicia la sesión para el CTO
 require_once '../includes/config.php';
 
 $error = '';
 
-// CTO credentials (in production, this should be in a secure database)
+// --- CONTRASEÑA DEL CTO ---
+// (En producción, almacena esto en una base de datos segura)
 $cto_password = 'GreenergyCTO2024!';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,9 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($password)) {
         $error = 'Por favor, introduce la contraseña de CTO.';
     } elseif ($password === $cto_password) {
+        // Si la contraseña es correcta, inicia la sesión del CTO
         $_SESSION['cto_logged_in'] = true;
         $_SESSION['cto_name'] = 'CTO';
-        header('Location: dashboard.php');
+        header('Location: dashboard.php'); // Redirige al dashboard del CTO
         exit();
     } else {
         $error = 'Contraseña de CTO incorrecta.';
