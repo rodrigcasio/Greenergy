@@ -1,60 +1,60 @@
-# Greenergy - Environmental Impact Assessment Application
+# Greenergy - Aplicación de Evaluación de Impacto Ambiental
 
 ---
 
-## 🌐 Now Available Online! (First BETA Version)
+## 🌐 ¡Ahora Disponible en Línea! (Primera Versión BETA)
 
-***Site: http://greenergy.site/***
-
----
-
-## 🎯 Hackathon Project & Problem Statement
-
-This project was developed as part of a university hackathon challenge. The main problem addressed is the excessive production of carbon dioxide (CO₂) and its negative impact on the environment. Greenergy aims to help companies and their employees become more aware of their daily habits, reduce their carbon footprint, and contribute to a healthier ecosystem by promoting sustainable practices and reducing contamination.
+***Sitio: http://greenergy.site/***
 
 ---
 
-## What is Greenergy?
+## 🎯 Proyecto de Hackatón y Planteamiento del Problema
 
-Greenergy is a modern web application that helps companies and their employees understand and improve their environmental impact. The platform provides a simple, interactive way for employees to assess their daily habits and see how they contribute to the company’s overall sustainability goals.
-
----
-
-## What Can You Do on Greenergy?
-
-- **Register as an employee** and create your account.
-- **Take a 10-question environmental assessment** about your daily habits.
-- **Receive instant feedback and recommendations** based on your answers.
-- **See your results** and track your progress over time.
-- **View company-wide analytics and impact summaries** (for authorized users).
-- **Enjoy a clean, mobile-friendly interface** with your company’s branding.
+Este proyecto fue desarrollado como parte de un hackatón universitario. El principal problema abordado es la producción excesiva de dióxido de carbono (CO₂) y su impacto negativo en el medio ambiente. Greenergy busca ayudar a las empresas y a sus empleados a ser más conscientes de sus hábitos diarios, reducir su huella de carbono y contribuir a un ecosistema más saludable promoviendo prácticas sostenibles y reduciendo la contaminación.
 
 ---
 
-## How to Get Started
+## ¿Qué es Greenergy?
 
-1. Visit the Greenergy website.
-2. Register for an account using your name, email, and password.
-3. Complete the environmental assessment.
-4. Review your personalized results and suggestions.
-5. Log in anytime to see your progress or retake the assessment.
+Greenergy es una aplicación web moderna que ayuda a las empresas y a sus empleados a comprender y mejorar su impacto ambiental. La plataforma ofrece una forma sencilla e interactiva para que los empleados evalúen sus hábitos diarios y vean cómo contribuyen a los objetivos de sostenibilidad de la empresa.
 
 ---
 
-## Results & Demo
+## ¿Qué Puedes Hacer en Greenergy?
 
-After completing the assessment, users receive instant feedback on their environmental impact, including a personalized score and practical recommendations for improvement. Company-wide analytics and summaries are available for authorized users, helping organizations track progress toward sustainability goals.
-
-**Live Demo:**  
-You can try Greenergy now at [http://greenergy.site/](http://greenergy.site/)
-
----
-
-## About the BETA Version
-
-This is the first public release of Greenergy. We welcome your feedback and suggestions to help us improve the platform. Some features may be updated or expanded in future versions.
+- **Registrarte como empleado** y crear tu cuenta.
+- **Realizar una evaluación ambiental de 10 preguntas** sobre tus hábitos diarios.
+- **Recibir retroalimentación y recomendaciones instantáneas** basadas en tus respuestas.
+- **Ver tus resultados** y seguir tu progreso a lo largo del tiempo.
+- **Visualizar analíticas y resúmenes de impacto a nivel empresa** (para usuarios autorizados).
+- **Disfrutar de una interfaz limpia, adaptable a móviles y con la imagen de tu empresa.**
 
 ---
 
-## Repo Author 
-Rodrigo Casio ([View my Github profile](https://github.com/rodrigcasio)) 
+## ¿Cómo Empezar?
+
+1. Visita el sitio web de Greenergy.
+2. Regístrate con tu nombre, correo electrónico y contraseña.
+3. Completa la evaluación ambiental.
+4. Revisa tus resultados personalizados y sugerencias.
+5. Ingresa en cualquier momento para ver tu progreso o volver a realizar la evaluación.
+
+---
+
+## Resultados y Demo
+
+Después de completar la evaluación, los usuarios reciben retroalimentación instantánea sobre su impacto ambiental, incluyendo una puntuación personalizada y recomendaciones prácticas para mejorar. Las analíticas y resúmenes a nivel empresa están disponibles para usuarios autorizados, ayudando a las organizaciones a seguir su progreso hacia objetivos de sostenibilidad.
+
+**Demo en Vivo:**  
+Puedes probar Greenergy ahora en [http://greenergy.site/](http://greenergy.site/)
+
+---
+
+## Sobre la Versión BETA
+
+Esta es la primera versión pública de Greenergy. Agradecemos tus comentarios y sugerencias para ayudarnos a mejorar la plataforma. Algunas funciones pueden ser actualizadas o ampliadas en futuras versiones.
+
+---
+
+## Autor del Repositorio
+Rodrigo Casio ([Ver mi perfil de Github](https://github.com/rodrigcasio)) 
