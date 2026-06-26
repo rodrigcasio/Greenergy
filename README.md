@@ -2,13 +2,14 @@
 
 ---
 
-## 🌐 ¡Ahora Disponible en Línea! (Primera Versión BETA)
+## Estado del Proyecto: Modo Archivo
+> **Nota:** La demostración en vivo (live demo) de este proyecto de hackatón ha sido desactivada para ahorrar costos de alojamiento web.
 
-***Sitio: http://greenergy.site/***
+Todas las funciones principales, la lógica de la aplicación y la estructura de la base de datos están completamente preservadas en este repositorio. Aún puedes revisar el código fuente.
 
 ---
 
-## 🎯 Proyecto de Hackatón y Planteamiento del Problema
+## Proyecto de Hackatón y Planteamiento del Problema
 
 Este proyecto fue desarrollado como parte de un hackatón universitario. El principal problema abordado es la producción excesiva de dióxido de carbono (CO₂) y su impacto negativo en el medio ambiente. Greenergy busca ayudar a las empresas y a sus empleados a ser más conscientes de sus hábitos diarios, reducir su huella de carbono y contribuir a un ecosistema más saludable promoviendo prácticas sostenibles y reduciendo la contaminación.
 
@@ -45,10 +46,6 @@ Greenergy es una aplicación web moderna que ayuda a las empresas y a sus emplea
 
 Después de completar la evaluación, los usuarios reciben retroalimentación instantánea sobre su impacto ambiental, incluyendo una puntuación personalizada y recomendaciones prácticas para mejorar. Las analíticas y resúmenes a nivel empresa están disponibles para usuarios autorizados, ayudando a las organizaciones a seguir su progreso hacia objetivos de sostenibilidad.
 
-**Demo en Vivo:**  
-Puedes probar Greenergy ahora en [http://greenergy.site/](http://greenergy.site/)
-
----
 
 ## Sobre la Versión BETA
 
