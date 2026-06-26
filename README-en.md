@@ -1,5 +1,7 @@
 # Greenergy - Environmental Impact Assessment Application
 
+🌐 **Language / Idioma:** [English](README-en.md) | [Español](README.md)
+
 ---
 
 ## Project Status: Archive Mode
