@@ -1,5 +1,7 @@
 # Greenergy - Aplicación de Evaluación de Impacto Ambiental
 
+**Idioma / Language:** [Español](README.md) | [English](README-en.md)
+
 ---
 
 ## Estado del Proyecto: Modo Archivo
